@@ -26,7 +26,7 @@ module.exports = {
             rut: "RUT", 
             address: "Dirección",
             town: "Ciudad",
-            test: "Test 123 probando"
+            description: "Test 123 probando"
         };
 
         // A data example to test
