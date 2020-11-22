@@ -4,9 +4,8 @@ Aquí encontrará los archivos necesarios para crear un reporte con la función 
 # Archivos necesarios
 
 ## generate-pdf.js
-Este archivo incluye las dos funciones necesarias para generar reportes PDFs responsivos
-- generatePDFv1 : la función para generar reportes
-- calculateRows : función para calcular cuántas filas tendrá cada página (requiere de entrada algunos valores como colWidth, para controlar que no se exceda anchura del reporte y mantener responsividad)
+Este archivo incluye la funcion para generar reportes PDFs responsivos
+- generatePDFv1
 
 ## script.sql
 Este archivo contiene las script de creación de tabla template_html y inserción de tuplas para base, css, header, body y footer del reporte HTML (EJS) para MySQL (en realidad cualquier motor SQL)
