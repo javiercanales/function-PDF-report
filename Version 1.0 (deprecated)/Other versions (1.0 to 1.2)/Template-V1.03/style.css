@@ -1,27 +1,38 @@
 body {
     color: rgb(72, 72, 105);
     font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    /* font-size: 15px; */
 }
-
-/* Body styles */
-table {
-    table-layout: auto;
-    word-wrap: break-word;
-    text-align: left;
-}
-thead.table-body, th.table-body, td.table-body {
+td {
     border: 2px solid rgb(209, 139, 10);
-    border-collapse: collapse !important;
+    word-wrap: normal;
 }
-th.table-body {
-    color: rgb(209, 139, 10); /* For a header with color */
+th {
+    border: 2px solid rgb(209, 139, 10);
+    color: rgb(209, 139, 10);
+    word-wrap: break-word;
 }
-
-/* Header styles */
+table {
+    table-layout: fixed;
+    word-break: break-all;
+}
+table.table-striped > thead > tr > th {
+    border: 2px solid rgb(209, 139, 10);
+}
+.table-body {
+    height: 78vh;
+    width: 97vw;
+}
+.table-first-col {
+    width: 4.5%;
+}
+/* .table-cols in the function */
+.table-last-col {
+    width: auto;
+}
 .header {
-    padding: 8px;
+    height: 15vh;
+    width: 100vw;
+    padding: 12px;
 }
 .header-row-1 {
     display: flex;
@@ -55,8 +66,6 @@ th.table-body {
     flex-direction: column;
     align-items: flex-end;
 }
-
-/* Footer styles */
 .footer {
     color: orange;
     font-size: 23px;
@@ -64,20 +73,12 @@ th.table-body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    height: 4vh;
+    width: 100vw;
 }
-.table-footer-place {
-    height: 3.5cm; /* A fixed height for the space where footer will place */
-}
-
-/* More configs for printing */
 @media print {
-    table {
-        margin: 10px;
+    .pagebreak { 
+        page-break-before: always;
     }
-    .print-footer {
-        position: fixed;
-        bottom: 3.5%;
-        left: 0;
-    }
+    /* page-break-after works, as well */
 }

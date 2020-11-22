@@ -21,62 +21,85 @@ insert into template_html (id, name, html) values (1, 'base', '<!DOCTYPE html>
       crossorigin="anonymous"
     ></script>
     
+    <link rel="stylesheet" href="style.css" />
     <title>Reporte</title>
   </head>
 
-  <% let currentRows = 0 %>
   <body>
-  <% arrayData.map((data, i) => { %>
-    <!-- ======= Header ======= -->
-    {header}
 
-    <!-- ======= Body ======= -->
-    {body}
+    <!-- This report is designed as a whole table,
+      to reach the responsiveness per page,
+      by forcing the PDF generation to include a header and footer
+      as a part of the table
+    -->
 
-    <!-- ======= Footer ======= -->
+    <!-- ============ Start of the report ============ -->
+    <table>
+      <thead>
+        <tr>
+          <td>
+
+            <!-- ======= Header ======= -->
+            {header}
+            <!-- ======= End Header ======= -->
+
+          </td>
+        </tr>
+      </thead>
+
+      <!-- ======= Body ======= -->
+      <tr>
+        <td>
+          <!-- Start Print Content -->
+          {body}
+        </td>
+      </tr>
+      <!-- ======= End Body ======= -->
+
+      <!-- ======= Footer: space to place it ======= -->
+      <tfoot>
+        <tr>
+          <td class="table-footer-place">
+            <!-- Leave this empty and dont remove it. This space is where footer will be placed on print -->
+          </td>
+        </tr>
+      </tfoot>
+      <!-- ======= End Footer ======= -->
+
+    </table>
+    <!-- ============ End of the report ============ -->
+
+    <!-- ======= Footer (to be placed in the space above) ======= -->
     {footer}
 
-    <div class="pagebreak"></div>
-    <% currentRows += arrayRowsPerPage[i] %>
-  <% }); %>
   </body>
-</html>');
+</html>
+');
 
 insert into template_html (id, name, html) values (2, 'css', 'body {
     color: rgb(72, 72, 105);
     font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    /* font-size: 15px; */
 }
-td {
-    border: 2px solid rgb(209, 139, 10);
-    word-wrap: normal;
-}
-th {
-    border: 2px solid rgb(209, 139, 10);
-    color: rgb(209, 139, 10);
-    word-wrap: break-word;
-}
+
+/* Body styles */
 table {
-    table-layout: fixed;
-    word-break: break-all;
+    table-layout: auto;
+    word-wrap: break-word;
+    text-align: left;
 }
-table.table-striped > thead > tr > th {
+thead.table-body, th.table-body, td.table-body {
     border: 2px solid rgb(209, 139, 10);
+    border-collapse: collapse !important;
 }
-.table-body {
-    height: 78vh;
-    width: 97vw;
+th.table-body {
+    color: rgb(209, 139, 10); /* For a header with color */
 }
-.table-first-col {
-    width: 4.5%;
-}
-/* .table-cols in the function */
-.table-last-col {
-    width: auto;
-}
+
+/* Header styles */
 .header {
-    height: 15vh;
-    width: 100vw;
-    padding: 12px;
+    padding: 8px;
 }
 .header-row-1 {
     display: flex;
@@ -110,6 +133,8 @@ table.table-striped > thead > tr > th {
     flex-direction: column;
     align-items: flex-end;
 }
+
+/* Footer styles */
 .footer {
     color: orange;
     font-size: 23px;
@@ -117,17 +142,25 @@ table.table-striped > thead > tr > th {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 4vh;
-    width: 100vw;
+    width: 100%;
 }
+.table-footer-place {
+    height: 3.5cm; /* A fixed height for the space where footer will place */
+}
+
+/* More configs for printing */
 @media print {
-    .pagebreak { 
-        page-break-before: always;
+    table {
+        margin: 10px;
     }
-    /* page-break-after works, as well */
+    .print-footer {
+        position: fixed;
+        bottom: 3.5%;
+        left: 0;
+    }
 }');
 
-insert into template_html (id, name, html) values (3, 'header', '<header class="container-fluid header">
+insert into template_html (id, name, html) values (3, 'header', '<div class="header">
   <div class="row header-row-1">
     <div class="col-3 header-c1">
       <div class="row">
@@ -153,9 +186,6 @@ insert into template_html (id, name, html) values (3, 'header', '<header class="
       <div class="row">
         <div class="col-4">
           <div class="row">
-            Página:
-          </div>
-          <div class="row">
             Fecha:
           </div>
           <div class="row">
@@ -166,9 +196,6 @@ insert into template_html (id, name, html) values (3, 'header', '<header class="
           </div>
         </div>
         <div class="col-8 header-c3-info">
-          <div class="row">
-            <%= i+1 +'' de ''+pages %>
-          </div>
           <div class="row">
             <%= date %>
           </div>
@@ -190,38 +217,51 @@ insert into template_html (id, name, html) values (3, 'header', '<header class="
       <h3><%= report.subtitle %></h3>
     </div>
   </div>
-</header>');
-
-insert into template_html (id, name, html) values (4, 'body', '<div class="row justify-content-center">
-  <div class="col-auto">
-    <table class="table table-sm table-striped table-body">
-      <thead>
-        <tr>
-          <!-- To generate columns/headers for the report -->
-          <th scope="col" class="table-first-col">N°</th>
-          <% columns.slice(0, columns.length-1).map((column, idx) => { %>
-          <th scope="col" class="table-cols"><%= column %></th>
-          <% }) %>
-          <th scope="col" class="table-last-col"><%= columns[columns.length-1] %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% data.map((elem, j) => { %>
-          <tr>
-            <td scope="row" class="table-first-col">
-              <b><%= (currentRows) + (j+1) %></b>
-            </td>
-            <% dataColumns.slice(0, dataColumns.length-1).map((header, k) => { %>
-            <td scope="row" class="table-cols"><%= elem[header] %></td>
-            <% }) %>
-            <td scope="row" class="table-last-col"><%= elem[dataColumns[dataColumns.length-1]] %></td>
-          </tr>   
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
 </div>');
 
-insert into template_html (id, name, html) values (5, 'footer', '<footer class="container footer">
+insert into template_html (id, name, html) values (4, 'body', '<table class="table-sm"> <!-- Bootstrap class small table -->
+
+  <!-- Generate columns/headers for the report -->
+  <thead class="table-body">
+    <tr class="table-body">
+
+      <!-- Index (if you dont need it, pass includeIndex = false
+          or just take this off, according your needs) -->
+      <% if (includeIndex) { %>
+      <th id="column0" scope="col" class="table-body">N°</th>
+      <% } %>
+
+      <!-- Data -->
+      <% headerNames.slice(0, headerNames.length).map((headerName, idx) => { %>
+      <th id="column<%= idx + 1 %>" scope="col" class="table-body"><%= headerName %></th>
+      <% }) %>
+
+    </tr>
+  </thead>
+  
+  <!-- Display the data -->
+  <tbody class="table-body">
+    <% data.map((elem, j) => { %>
+      <tr class="table-body">
+
+        <!-- Index (if you dont need it, pass includeIndex = false
+          or just take this off) -->
+        <% if (includeIndex) { %>
+        <td scope="row" class="table-body">
+          <b><%= (j+1) %></b>
+        </td>
+        <% } %>
+
+        <!-- Data -->
+        <% dataKeys.slice(0, dataKeys.length).map((header, k) => { %>
+        <td scope="row"  class="table-body"><%= elem[header] %></td>
+        <% }) %>
+        
+      </tr>   
+    <% }) %>
+  </tbody>
+</table>');
+
+insert into template_html (id, name, html) values (5, 'footer', '<div id="footer" class="footer print-footer">
     <strong>Novosystem.io</strong>
-</footer>');
+</div>');
