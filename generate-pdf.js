@@ -1,6 +1,5 @@
 /**
- * PDFController - Test of modules to generate PDF files using EJS HTML templates and Puppeteer
- * Versión 1.1 (Final versión 1)
+ * Function to generate PDF reports, based on EJS template, HTML table structure and CSS.
  */
 
 /**
