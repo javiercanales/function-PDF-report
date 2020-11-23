@@ -113,11 +113,7 @@ module.exports = {
             includeIndex: includeIndex
         });
         
-        /**
-         * Pendiente de ver si el puppeteer puede ser lanzado al iniciar la app.
-         * Además, ver si es que se puede también dejar iniciada una page.
-         * Revisar opciones (por tema de rendimiento).
-         */
+        
         // Start the puppeteer API, headless
         const browser = await Puppeteer.launch({ 
             headless: true, 
