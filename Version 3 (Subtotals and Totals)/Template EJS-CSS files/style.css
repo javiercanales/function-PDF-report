@@ -1,0 +1,87 @@
+body {
+    color: rgb(72, 72, 105);
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    /* font-size: 15px; */
+}
+
+/* Body (table) styles */
+thead.table-body, th.table-body, td.table-body {
+    border: 2px solid rgb(209, 139, 10);
+    border-collapse: collapse !important;
+}
+th.table-body {
+    color: rgb(209, 139, 10); /* For a header with color */
+}
+td.table-total {
+    border: 2px solid rgb(209, 139, 10);
+    font-weight: bold;
+}
+
+/* Header styles */
+.header {
+    padding: 13px;
+}
+.header-row-1 {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+.header-row-2 {
+    text-align: center;
+}
+.header-row-3 {
+    text-align: center;
+}
+.header-c1 {
+    display: flex;
+    flex-direction: column;
+}
+.header-c2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.header-c3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.header-c3-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Footer styles */
+.footer {
+    color: orange;
+    font-size: 23px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.table-footer-place {
+    height: 2.5cm; /* A fixed height for the space where footer will place */
+}
+
+/* More configs for printing */
+@media print {
+    table {
+        table-layout: fixed;
+        word-wrap: break-word;
+        text-align: left;
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .print-footer {
+        position: fixed;
+        bottom: 2.2%;
+        left: 0;
+    }
+}

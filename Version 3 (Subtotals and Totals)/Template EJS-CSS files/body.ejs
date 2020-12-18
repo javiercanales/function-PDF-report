@@ -1,0 +1,119 @@
+<table class="table-sm"> <!-- Bootstrap class small table -->
+
+  <!-- Generate columns/headers for the report -->
+  <thead class="table-body">
+    <tr class="table-body">
+
+      <!-- Index (if you don't need it, pass includeIndex = false
+          or just take this off, according your needs) -->
+      <% if (includeIndex) { %>
+        <th id="column0" scope="col" class="table-body">N°</th>
+      <% } %>
+
+      <!-- Data -->
+      <% headerNames.map((headerName, idx) => { %>
+        <th id="column<%= idx + 1 %>" scope="col" class="table-body"><%= headerName %></th>
+      <% }) %>
+
+    </tr>
+  </thead>
+  
+  <!-- Display the body -->
+  <tbody class="table-body">
+
+    <!-- Defining an index with a counter that starts at 1 -->
+    <% if (includeIndex) { %>
+      <% var indexCounter = 1 %>
+    <% } %>
+
+    <!-- START: Display the data for each value of the grouped values -->
+    <% dataValuesGroupBy.map((valueGroupBy, i) => { %>
+
+      <!-- Display the data for the given value -->
+      <% dataGrouped[valueGroupBy].map((elem, j) => { %>
+        <tr class="table-body">
+
+          <!-- Index (if you don't need it, pass includeIndex = false
+          or just take this off, according your needs) -->
+          <% if (includeIndex) { %>
+            <td scope="row" class="table-body">
+              <!-- Print the index counter and increment it -->
+              <b><%= indexCounter %></b>
+                 <% indexCounter++ %>
+            </td>
+          <% } %>
+
+          <!-- Data -->
+          <% dataKeys.map((header, k) => { %>
+            <td scope="row"  class="table-body"><%= elem[header] %></td>
+          <% }) %>
+          
+        </tr>
+      <% }) %>
+
+      <!-- Display the subtotals -->
+      <% let countCols %> <!-- To count how many cols are previous the col with subtotal -->
+      <% if (includeIndex) { %>
+        <% countCols = 1 %>
+      <% } else { %>
+        <% countCols = 0 %>
+      <% } %>
+
+      <tr class="table-body">
+        <% subtotals.map(elem => { %>
+          <% if (elem.hasSubtotal) { %>
+
+              <td
+                colspan="<%= countCols %>"
+                scope="row"
+                class="table-total"
+                style="text-align: right;"
+              >
+                Subtotal
+              </td>
+              <td scope="row" class="table-total"><%= elem.subtotalValues[i] %></td>
+              <% countCols = 0 %> <!-- Restart -->
+
+          <% } else { %>
+              <% countCols++ %>
+          <% } %>
+
+        <% }) %>
+      </tr>
+
+    <% }) %>
+    <!-- END display data + subtotals -->
+
+    <!-- Display the totals -->
+      <% let countCols %> <!-- To count how many cols are previous the col with total -->
+      <% if (includeIndex) { %>
+        <% countCols = 1 %>
+      <% } else { %>
+        <% countCols = 0 %>
+      <% } %>
+
+      <tr class="table-body">
+
+        <% totals.map(elem => { %>
+          <% if (elem.hasTotal) { %>
+
+              <td
+                colspan="<%= countCols %>"
+                scope="row"
+                class="table-total"
+                style="text-align: right;"
+              >
+                Total
+              </td>
+              <td scope="row" class="table-total"><%= elem.totalValue %></td>
+              <% countCols = 0 %> <!-- Restart -->
+
+          <% } else { %>
+              <% countCols++ %>
+          <% } %>
+
+        <% }) %>
+      </tr>
+
+  </tbody>
+</table>

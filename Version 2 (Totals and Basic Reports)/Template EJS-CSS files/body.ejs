@@ -1,0 +1,80 @@
+<table class="table-sm"> <!-- Bootstrap class small table -->
+
+  <!-- Generate columns/headers for the report -->
+  <thead class="table-body">
+    <tr class="table-body">
+
+      <!-- Index (if you don't need it, pass includeIndex = false
+          or just take this off, according your needs) -->
+      <% if (includeIndex) { %>
+        <th id="column0" scope="col" class="table-body">N°</th>
+      <% } %>
+
+      <!-- Data -->
+      <% headerNames.map((headerName, idx) => { %>
+        <th id="column<%= idx + 1 %>" scope="col" class="table-body"><%= headerName %></th>
+      <% }) %>
+
+    </tr>
+  </thead>
+  
+  <!-- Display the body -->
+  <tbody class="table-body">
+
+    <!-- Display the data -->
+    <% data.map((elem, i) => { %>
+      <tr class="table-body">
+
+        <!-- Index (if you don't need it, pass includeIndex = false
+          or just take this off) -->
+        <% if (includeIndex) { %>
+          <td scope="row" class="table-body">
+            <b><%= (i+1) %></b>
+          </td>
+        <% } %>
+
+        <!-- Data -->
+        <% dataKeys.map((header, k) => { %>
+          <td scope="row"  class="table-body"><%= elem[header] %></td>
+        <% }) %>
+        
+      </tr>   
+    <% }) %>
+
+    <!-- Display the totals -->
+    
+    <% if (totalExists) { %>
+      <% let countCols = 1 %> <!-- To count how many cols are previous the col with total -->
+      <% if (includeIndex) { %>
+        <% countCols = 1 %>
+      <% } else { %>
+        <% countCols = 0 %>
+      <% } %>
+
+      <tr class="table-body">
+
+        <% totals.map(elem => { %>
+
+          <% if (elem.total) { %>
+
+              <td
+                colspan="<%= countCols %>"
+                scope="row"
+                class="table-total"
+                style="text-align: right;"
+              >
+                Total
+              </td>
+              <td scope="row" class="table-total"><%= elem.totalValue %></td>
+              <% countCols = 0 %> <!-- Restart -->
+
+          <% } else { %>
+              <% countCols++ %>
+          <% } %>
+
+        <% }) %>
+      </tr>
+    <% } %>
+
+  </tbody>
+</table>
