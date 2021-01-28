@@ -8,6 +8,7 @@ Aquí encontrará los archivos necesarios para crear un reporte con la función 
 # Observaciones
 - Si desea generar reportes para muchos registros (e.g. +10.000), se sugiere reducir el tamaño de la letra (en el body del css). El rendimiento para reportes gigantes dependerá del equipo servidor.
 - También se sugiere controlar desde el front-end las peticiones, para que el navegador no vuelva a pedir una petición si es que sigue esperando el reporte (podría ocurrir para reportes grandes según pruebas realizadas).
+- Si requiere ignorar ciertos atributos (como las columnas), debe indicar dicho valor como null, en el orden indicado de la función (e.g. generatePdfReport(data, null, ...)).
 
 # Archivos necesarios
 
