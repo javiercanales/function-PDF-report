@@ -3,7 +3,7 @@ Aquí encontrará los archivos necesarios para crear un reporte con la función 
 - Esta función permite generar reportes PDF responsivos generando subtotales y totales para columnas deseadas.
 - Con esta función usted puede abordar tanto subtotales y totales, sólo totales, o reportes básicos.
 - La función admite múltiples criterios (keys) para el agrupamiento de subtotales.
-- Para ver un ejemplo de uso click [aquí](#ejemplo-de-uso)
+- Para ver un ejemplo de uso click [aquí](#ejemplo-de-uso).
 
 # Observaciones
 - Si desea generar reportes para muchos registros (e.g. +10.000), se sugiere reducir el tamaño de la letra (en el body del css). El rendimiento para reportes gigantes dependerá del equipo servidor.
@@ -21,10 +21,10 @@ Este archivo contiene las script de creación de tabla report_template y inserci
 # Archivos opcionales
 
 ## ReportController.js
-Este archivo contiene un ejemplo de servicio/controlador para llamar a la función
+Este archivo contiene un ejemplo de servicio/controlador para llamar a la función (similar al del [ejemplo de uso](#ejemplo-de-uso))
 
 ## data.js
-Archivo con datos de prueba
+Archivo con datos de prueba (la misma de los [datos de prueba utilizados](#datos-de-prueba-utilizados))
 
 ## ReportTemplate.js
 Este archivo contiene el modelo para la tabla report_template, para el framework Sails.js
