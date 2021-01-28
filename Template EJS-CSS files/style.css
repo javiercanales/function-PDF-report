@@ -1,0 +1,140 @@
+/****************************************************************/
+/************** HTML's body (main) element styles ***************/
+body {
+    color: rgb(72, 72, 105);
+    font-family: "Open Sans", sans-serif;
+    font-size: 11px;
+}
+/****************************************************************/
+
+
+/****************************************************************/
+/**************** Body's report (table) styles ******************/
+/* For the header <th> of the table's/body's report */
+.table-header {
+    border: 2px solid rgb(209, 139, 10);
+    color: rgb(209, 139, 10); /* For a header with color */
+}
+
+/* For the cells of the table's/body's report */
+.table-row-values {
+    border: 2px solid rgb(209, 139, 10);
+}
+.table-cell-values {
+    border: 2px solid rgb(209, 139, 10);
+    text-align: right;
+}
+
+/* For the subtotal-info cells*/
+.table-criteria { /* Styles for the subtotals and totals */
+    border: 2px solid rgb(243, 144, 15);
+    font-weight: bold;
+    text-align: left;
+    color:rgb(164, 93, 0);
+}
+
+/* For the subtotal-info cells*/
+.table-subtotal-info { /* Styles for the subtotals and totals */
+    border: 2px solid rgb(209, 139, 10);
+    font-weight: bold;
+    text-align: right;
+    background-color:  rgb(240, 241, 161);
+}
+/* For the subtotal-value cells */
+.table-subtotal-values { /* Styles for the subtotals and totals */
+    border: 2px solid rgb(209, 139, 10);
+    text-align: right;
+    background-color:  rgb(240, 241, 161);
+}
+
+/* For the total-info cells*/
+.table-total-info { /* Styles for the subtotals and totals */
+    border: 2px solid rgb(209, 139, 10);
+    font-weight: bold;
+    text-align: right;
+    background-color:  rgb(226, 228, 86);
+}
+/* For the total-value cells*/
+.table-total-values { /* Styles for the subtotals and totals */
+    border: 2px solid rgb(209, 139, 10);
+    text-align: right;
+    background-color:  rgb(226, 228, 86);
+}
+/*********************** End body styles ***********************/
+
+
+/***************************************************************/
+/*********************** Header styles *************************/
+.header {
+    padding: 13px;
+}
+.header-row-1 {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+.header-row-2 {
+    text-align: center;
+}
+.header-row-3 {
+    text-align: center;
+}
+.header-c1 {
+    display: flex;
+    flex-direction: column;
+}
+.header-c2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.header-c3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.header-c3-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+/********************** End header styles **********************/
+
+
+/***************************************************************/
+/************************ Footer styles ************************/
+.footer {
+    color: orange;
+    font-size: 23px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.table-footer-place {
+    height: 2.5cm; /* A fixed height for the space where footer will place */
+}
+/********************** End footer styles **********************/
+
+
+/***************************************************************/
+/****************** More configs for printing ******************/
+@media print {
+    table {
+        table-layout: fixed;
+        word-wrap: break-word;
+        text-align: left;
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .print-footer {
+        position: fixed;
+        bottom: 2.2%;
+        left: 0;
+    }
+}
+/**************************** End ******************************/
