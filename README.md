@@ -3,7 +3,7 @@ Aquí encontrará los archivos necesarios para crear un reporte con la función 
 - Esta función permite generar reportes PDF responsivos generando subtotales y totales para columnas deseadas.
 - Con esta función usted puede abordar tanto subtotales y totales, sólo totales, o reportes básicos.
 - La función admite múltiples criterios (keys) para el agrupamiento de subtotales.
-- Ejemplo de uso en #ejemplo-de-uso
+- Ejemplo de uso en [link](#ejemplo-de-uso)
 
 # Observaciones
 - Si desea generar reportes para muchos registros (e.g. +10.000), se sugiere reducir el tamaño de la letra (en el body del css). El rendimiento para reportes gigantes dependerá del equipo servidor.
