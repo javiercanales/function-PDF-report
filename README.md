@@ -3,6 +3,7 @@ Aquí encontrará los archivos necesarios para crear un reporte con la función 
 - Esta función permite generar reportes PDF responsivos generando subtotales y totales para columnas deseadas.
 - Con esta función usted puede abordar tanto subtotales y totales, sólo totales, o reportes básicos.
 - La función admite múltiples criterios (keys) para el agrupamiento de subtotales.
+- Ejemplo de uso en #ejemplo-de-uso
 
 # Observaciones
 - Si desea generar reportes para muchos registros (e.g. +10.000), se sugiere reducir el tamaño de la letra (en el body del css). El rendimiento para reportes gigantes dependerá del equipo servidor.
@@ -12,10 +13,10 @@ Aquí encontrará los archivos necesarios para crear un reporte con la función 
 
 ## generate-report-pdf.js
 Este archivo incluye la funcion para generar reportes PDFs
-- generatePDFv1 : la función para generar reportes
+- generatePdfReport : la función para generar reportes PDF, que retorna un PDF como buffer.
 
 ## script.sql
-Este archivo contiene las script de creación de tabla template_html y inserción de tuplas para base, css, header, body y footer del reporte HTML (EJS) para MySQL (en realidad casi cualquier motor SQL tipico)
+Este archivo contiene las script de creación de tabla report_template y inserción de tuplas para base, css, header, body y footer del reporte HTML (EJS) para MySQL (en realidad casi cualquier motor SQL tipico)
 
 # Archivos opcionales
 
