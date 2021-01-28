@@ -11,7 +11,7 @@ Aquí encontrará los archivos necesarios para crear un reporte con la función 
 - Si requiere ignorar ciertos atributos (como las columnas), debe indicar dicho valor como null, en el orden indicado de la función (e.g. generatePdfReport(data, null, ...)).
 
 # Imports requeridos
-```javascript
+```node
 npm i ejs
 npm i puppeteer
 npm i lodash
