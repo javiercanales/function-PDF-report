@@ -10,6 +10,13 @@ Aquí encontrará los archivos necesarios para crear un reporte con la función 
 - También se sugiere controlar desde el front-end las peticiones, para que el navegador no vuelva a pedir una petición si es que sigue esperando el reporte (podría ocurrir para reportes grandes según pruebas realizadas).
 - Si requiere ignorar ciertos atributos (como las columnas), debe indicar dicho valor como null, en el orden indicado de la función (e.g. generatePdfReport(data, null, ...)).
 
+# Imports requeridos
+```javascript
+npm i ejs
+npm i puppeteer
+npm i lodash
+```
+
 # Archivos necesarios
 
 ## generate-report-pdf.js
